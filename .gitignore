@@ -1,1 +1,3 @@
 tmp/
+certs/keys/jwt-public.pem
+jwt-public.pem

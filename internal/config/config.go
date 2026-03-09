@@ -9,16 +9,18 @@ import (
 )
 
 type Config struct {
-	Port  string
-	DBUrl string
+	Port             string
+	DBUrl            string
+	JWTPublicKeyPath string
 }
 
 func LoadConfig() Config {
 	loadDotEnv(".env")
 
 	return Config{
-		Port:  getEnv("PORT", "8080"),
-		DBUrl: getDBURL(),
+		Port:             getEnv("PORT", "8080"),
+		DBUrl:            getDBURL(),
+		JWTPublicKeyPath: getEnv("JWT_PUBLIC_KEY_PATH", "certs/keys/jwt-public.pem"),
 	}
 }
 
