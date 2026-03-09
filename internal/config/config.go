@@ -12,6 +12,7 @@ type Config struct {
 	Port             string
 	DBUrl            string
 	JWTPublicKeyPath string
+	AccessTokenCookieName string
 }
 
 func LoadConfig() Config {
@@ -21,6 +22,7 @@ func LoadConfig() Config {
 		Port:             getEnv("PORT", "8080"),
 		DBUrl:            getDBURL(),
 		JWTPublicKeyPath: getEnv("JWT_PUBLIC_KEY_PATH", "certs/keys/jwt-public.pem"),
+		AccessTokenCookieName: getEnv("ACCESS_TOKEN_COOKIE_NAME", "access_token"),
 	}
 }
 

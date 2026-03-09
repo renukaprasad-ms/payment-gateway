@@ -11,7 +11,6 @@ import (
 	"payment-gateway/internal/config"
 	"payment-gateway/internal/modules/auth"
 	"payment-gateway/internal/response"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,17 +24,13 @@ func AuthMiddleware() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
 
-		authHeader := c.GetHeader("Authorization")
-
-		if authHeader == "" {
+		token, err := c.Cookie(config.LoadConfig().AccessTokenCookieName)
+		if err != nil {
 			response.AbortError(c, http.StatusUnauthorized, "missing token")
 			return
 		}
 
-		token := strings.TrimPrefix(authHeader, "Bearer ")
-
 		claims, err := auth.VerifyToken(token, pubKey)
-
 		if err != nil {
 			response.AbortError(c, http.StatusUnauthorized, "invalid token")
 			return

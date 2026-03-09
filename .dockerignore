@@ -1,0 +1,9 @@
+.git
+.gitignore
+.air.toml
+tmp/
+*.log
+*.out
+.env
+certs/keys/*.pem
+jwt-public.pem
