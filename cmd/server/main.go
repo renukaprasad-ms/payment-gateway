@@ -17,6 +17,6 @@ func main() {
 
 	log.Println("Server running on port", cfg.Port)
 
-	router.Run(":" + cfg.Port)
+	router.Run("0:0:0:0" + cfg.Port)
 
 }
